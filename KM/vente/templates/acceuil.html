@@ -1,0 +1,98 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block content %}
+<div class="relative h-screen overflow-hidden bg-sky-100">
+    <!-- Conteneur du diaporama -->
+    <div class="relative h-full w-full">
+        <!-- Image 1 -->
+        <img 
+            src="{% static 'vente/im2.jpeg' %}" 
+            alt="Portfolio image 1" 
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
+            id="image1"
+        >
+        <!-- Image 2 -->
+        <img 
+            src="{% static 'vente/im1.jpeg' %}" 
+            alt="Portfolio image 2" 
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+            id="image2"
+        >
+        <!-- Image 3 -->
+        <img 
+            src="{% static 'vente/im3.jpeg' %}" 
+            alt="Portfolio image 3" 
+            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0"
+            id="image3"
+        >
+    </div>
+
+    <!-- Overlay bleu ciel semi-transparent -->
+    <div class="absolute inset-0 bg-sky-300 opacity-20"></div>
+
+    <!-- Titre principal centré -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <h2 class="text-4xl md:text-6xl font-bold text-sky-800 text-center bg-white bg-opacity-70 px-8 py-6 rounded-xl shadow-xl animate-pulse">
+            Welcome to my personal PortFolio
+        </h2>
+    </div>
+
+    <!-- Texte en bas -->
+    <div class="absolute bottom-0 left-0 right-0 bg-sky-700 bg-opacity-80 text-white p-6 text-center backdrop-blur-sm">
+        <h3 class="text-2xl font-semibold mb-1">My name is KENMOGNE MAGNE KAMGAING Jodelle Cabrelle</h3>
+        <p class="text-xl">Born on June 28, 2004</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = [
+            document.getElementById('image1'),
+            document.getElementById('image2'),
+            document.getElementById('image3')
+        ];
+        let currentIndex = 0;
+
+        function changeImage() {
+            // Masquer toutes les images
+            images.forEach(img => {
+                img.classList.remove('opacity-100');
+                img.classList.add('opacity-0');
+            });
+            
+            // Afficher l'image courante
+            images[currentIndex].classList.remove('opacity-0');
+            images[currentIndex].classList.add('opacity-100');
+            
+            // Passer à l'image suivante
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        // Initialiser la première image
+        changeImage();
+        
+        // Changer d'image toutes les 5 secondes
+        const interval = setInterval(changeImage, 5000);
+
+        // Nettoyer l'intervalle si la page est quittée
+        window.addEventListener('beforeunload', () => {
+            clearInterval(interval);
+        });
+    });
+</script>
+
+<style>
+    /* Animation personnalisée pour le fond */
+    @keyframes gradientShift {
+        0% { background-color: #e0f2fe; }
+        50% { background-color: #bae6fd; }
+        100% { background-color: #e0f2fe; }
+    }
+    
+    body {
+        animation: gradientShift 15s infinite;
+    }
+</style>
+{% endblock %}
+

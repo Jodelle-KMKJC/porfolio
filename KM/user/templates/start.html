@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <header class="flex justify-between items-center mb-16">
+            <div class="text-2xl font-bold text-indigo-700">MonSite</div>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li><a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">Accueil</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Profil</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Paramètres</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-gray-800">Déconnexion</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Bienvenue sur votre espace</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-10">
+                Vous êtes maintenant connecté à votre compte. Commencez à explorer toutes les fonctionnalités que nous vous offrons.
+            </p>
+            
+            <div class="flex justify-center space-x-6">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200 transform hover:-translate-y-1 shadow-lg">
+                    Commencer
+                </button>
+                <button class="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-semibold py-3 px-8 rounded-lg transition duration-200">
+                    Explorer
+                </button>
+            </div>
+        </main>
+
+        <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="text-indigo-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Sécurité</h3>
+                <p class="text-gray-600">Vos données sont protégées avec les meilleures pratiques de sécurité.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="text-indigo-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Rapidité</h3>
+                <p class="text-gray-600">Une expérience utilisateur fluide et réactive à chaque interaction.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <div class="text-indigo-600 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Communauté</h3>
+                <p class="text-gray-600">Rejoignez des milliers d'utilisateurs satisfaits à travers le monde.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

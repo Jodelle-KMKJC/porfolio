@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -147,6 +148,23 @@ AUTH_USER_MODEL = 'user.CustomUser'
 
 LOGIN_REDIRECT_URL = '/reception/'
 # settings.py
-LOGIN_REDIRECT_URL = 'start'  # Redirection après connexion
+LOGIN_REDIRECT_URL = 'reception'  # Remplacez par le nom de votre URL pour start.html
 LOGOUT_REDIRECT_URL = 'index'  # Redirection après déconnexion
+
+# mon_projet/settings.py
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STORAGES = {
+
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
 

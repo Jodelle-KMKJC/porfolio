@@ -1,3 +1,20 @@
 from django.db import models
 
-# Create your models here.
+class Gateau(models.Model):
+    CATEGORIE_CHOICES = (
+        ('anniversaire', 'Anniversaire'),
+        ('mariage', 'Mariage'),
+        ('dessert', 'Dessert'),
+        ('autre', 'Autre'),
+    )
+
+    nom = models.CharField(max_length=255)
+    description = models.TextField()
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='gateaux/', blank=True, null=True)
+    categorie = models.CharField(max_length=20, choices=CATEGORIE_CHOICES)
+    disponibilite = models.BooleanField(default=True)
+    avis = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.nom

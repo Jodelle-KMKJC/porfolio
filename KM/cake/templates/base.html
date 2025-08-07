@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'accueil' %}">Accueil</a></li>
+            <li><a href="{% url 'propos' %}">À propos</a></li>
+            <li><a href="{% url 'nos_gateaux' %}">Nos Gâteaux</a></li>
+            <li><a href="{% url 'categorie' %}">Catégorie</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+             <li><a href="{% url 'categorie' %}">Catégorie</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'inscription' %}">Sign Up</a></li>
+            <li><a href="{% url 'connexion' %}">Login</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <p>&copy; 2025 Mon Application Cake. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

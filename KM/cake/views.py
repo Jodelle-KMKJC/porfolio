@@ -25,8 +25,8 @@ class AccueilView(TemplateView):
 
 # Vue pour la page À propos
 class AProposView(TemplateView):
-    template_name = 'propos.html'
-
+    template_name = 'a_propos.html'  # Créez ce template plus tard
+    
 # Vue pour la page Nos Gâteaux
 class NosGateauxView(TemplateView):
     template_name = 'nos_gateaux.html'

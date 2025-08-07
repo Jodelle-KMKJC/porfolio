@@ -1,0 +1,8 @@
+#systeme
+staticfiles/
+db.sqlite3/
+node_modules/
+
+#environnement virtuel
+venv/
+.env/

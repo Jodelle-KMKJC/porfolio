@@ -1,4 +1,291 @@
-{% extends 'base.html' %}
- {% load static %}
-  
-       
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jodelle - Pâtisserie Fine</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Ton fichier CSS compilé -->
+    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
+
+    <style>
+        /* Smooth transition for mobile menu */
+        #mobile-menu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+        /* Responsive font sizes and padding */
+        .nav-link {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem);
+        }
+        /* Hover effects */
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        /* Sticky footer solution */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        violet: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        blue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-b from-violet-50 to-white">
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-violet-50 bg-opacity-90 shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="{% url 'accueil' %}" class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 flex items-center justify-center">
+                    
+                </div>
+                <img src="{% static 'vente/logo1.jpeg' %}" alt="Jodelle Pâtisserie Logo" class="w-12 h-12 ml-2 rounded-full object-cover">
+                <span class="ml-3 text-lg font-bold text-violet-900">Jodelle Pâtisserie</span>
+            </a>
+
+            <!-- Menu pour écrans larges -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="{% url 'accueil' %}" class="bg-blue-500 from-violet-500 to-blue-500 text-sky px-4 py-2 rounded-full font-medium hover:from-violet-600 hover:to-blue-600 transition-all nav-link">Portfolio</a>
+                <a href="{% url 'apropos' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">À Propos</a>
+                <a href="{% url 'nos_gateaux' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Nos Gâteaux</a>
+                <a href="{% url 'categorie' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Catégorie</a>
+                <a href="{% url 'contact' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Contact</a>
+            </div>
+
+            <!-- Boutons connexion -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="{% url 'inscription' %}" class="text-blue-600 hover:text-blue-800 font-medium nav-link">Sign Up</a>
+                <a href="{% url 'connexion' %}" class="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors nav-link">Login</a>
+            </div>
+
+            <!-- Menu mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-violet-900 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu mobile déroulant -->
+        <div id="mobile-menu" class="md:hidden bg-violet-50 bg-opacity-90 border-t border-violet-200 px-4 py-4">
+            <div class="flex flex-col space-y-4">
+                <a href="{% url 'accueil' %}" class="bg-blue-600 from-violet-500 to-blue-500 text-blue-800 px-4 py-2 rounded-full font-medium text-center nav-link">PorFolio</a>
+                <a href="{% url 'apropos' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">À Propos</a>
+                <a href="{% url 'nos_gateaux' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">Nos Gâteaux</a>
+                <a href="{% url 'categorie' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">Catégorie</a>
+                <a href="{% url 'contact' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">Contact</a>
+                <div class="flex justify-center space-x-4 pt-4">
+                    <a href="{% url 'inscription' %}" class="text-blue-600 hover:text-blue-800 font-medium nav-link">Sign Up</a>
+                    <a href="{% url 'connexion' %}" class="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 nav-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}
+    
+            
+        
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-violet-50 bg-opacity-50 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo et nom -->
+                <div>
+                    <a href="{% url 'accueil' %}" class="flex items-center">
+                        <img src="{% static 'vente/logo1.jpeg' %}" alt="Jodelle Pâtisserie Logo" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 text-lg font-bold text-violet-900">Jodelle Pâtisserie</span>
+                    </a>
+                    <p class="text-violet-700 mt-2">Pâtisseries artisanales faites avec passion depuis 2024.</p>
+                </div>
+
+                <!-- Liens rapides -->
+                <div>
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b border-blue-400 pb-2">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{% url 'accueil' %}" class="text-violet-700 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-home text-blue-600 mr-3"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'apropos' %}" class="text-violet-700 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-info-circle text-blue-600 mr-3"></i>
+                                À Propos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'nos_gateaux' %}" class="text-violet-700 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-birthday-cake text-blue-600 mr-3"></i>
+                                Nos Gâteaux
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'categorie' %}" class="text-violet-700 hover:text-blue-600 flex items-center">
+                                <i class="fas fa-tags text-blue-600 mr-3"></i>
+                                Catégories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b border-blue-400 pb-2">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-blue-600 mr-3"></i>
+                            <a href="tel:+237698305149" class="text-violet-700 hover:text-blue-600">698 30 51 49</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-blue-600 mr-3"></i>
+                            <a href="tel:+237672209021" class="text-violet-700 hover:text-blue-600">672 20 90 21</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                            <a href="mailto:contact@jodelle-patisserie.com" class="text-violet-700 hover:text-blue-600">cabrellekamgaing@gmail.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-600 mr-3"></i>
+                            <span class="text-violet-700">2 <sup>ieme</sup> Carrefour Eveche, Bafoussam</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Horaires et Newsletter -->
+                <div>
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b border-blue-400 pb-2">Horaires</h3>
+                    <ul class="space-y-2 text-violet-700 mb-6">
+                        <li class="flex justify-between">
+                            <span>Lundi - Vendredi</span>
+                            <span>9h - 19h</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Samedi</span>
+                            <span>8h - 20h</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Dimanche</span>
+                            <span>9h - 15h</span>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold text-violet-900 mb-2">Newsletter</h3>
+                    <form class="flex">
+                        <input type="email" placeholder="Votre email" class="px-3 py-2 rounded-l-md border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-violet-900 w-full">
+                        <button type="submit" class="bg-violet-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    <p class="text-xs mt-2 text-violet-700">Inscrivez-vous pour recevoir nos dernières offres !</p>
+                </div>
+            </div>
+
+            <!-- Réseaux sociaux et copyright -->
+            <div class="mt-12 pt-8 border-t border-violet-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between">
+                    <!-- Social Media -->
+                    <div class="flex space-x-4 mb-4 md:mb-0">
+                        <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="https://pinterest.com" target="_blank" class="w-10 h-10 rounded-full bg-violet-500 flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i class="fab fa-pinterest-p text-white"></i>
+                        </a>
+                    </div>
+
+                    <!-- Copyright and Legal Links -->
+                    <div class="text-center">
+                        <p class="text-violet-700">&copy; 2025 Jodelle Pâtisserie. Tous droits réservés.</p>
+                        <div class="mt-2 flex flex-wrap justify-center space-x-4">
+                            <a href="#" class="text-violet-700 hover:text-blue-600 text-sm">Mentions légales</a>
+                            <a href="#" class="text-violet-700 hover:text-blue-600 text-sm">Politique de confidentialité</a>
+                            <a href="#" class="text-violet-700 hover:text-blue-600 text-sm">Conditions d'utilisation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('open');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

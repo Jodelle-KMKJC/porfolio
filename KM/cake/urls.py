@@ -1,14 +1,13 @@
 from django.urls import path
-from . import views
-from .views import BaseView, AccueilView, AProposView, NosGateauxView, CategorieView, ContactView
+from .views import AProposView, NosGateauxView, CategorieView, ContactView, RetourView
 
 urlpatterns = [
 
-    path('', IndexView.as_view(), name='accueil'),
-    path('a-propos/', AProposView.as_view(), name='propos'),
-    path('nos-gateaux/', NosGateauxView.as_view(), name='nos_gateaux'),
+    path('part/', AProposView.as_view(), name='apropos'),
     path('categorie/', CategorieView.as_view(), name='categorie'),
+    path('nos_gateaux/', NosGateauxView.as_view(), name='nos_gateaux'),
+
     path('contact/', ContactView.as_view(), name='contact'),
-    path('inscription/', InscriptionView.as_view(), name='inscription'),
-    path('connexion/', ConnexionView.as_view(), name='connexion'),
+    path('retour/', RetourView.as_view(), name='retour'),
+
 ]

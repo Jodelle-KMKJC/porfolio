@@ -1,0 +1,239 @@
+{% extends 'test.html' %}
+ {% load static %}
+{% block content %}
+<div class="bg-gradient-to-br from-violet-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- En-tête -->
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold text-violet-900 mb-4">Contactez-nous</h1>
+      <div class="w-24 h-1 bg-gradient-to-r from-violet-500 to-blue-500 mx-auto mb-6 rounded-full"></div>
+      <p class="text-lg text-violet-700 max-w-2xl mx-auto">
+        Vous avez une question, une demande spéciale ou souhaitez passer commande? Notre équipe est à votre disposition pour répondre à toutes vos demandes.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Informations de contact -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 border border-violet-100 transform hover:-translate-y-1 transition-all duration-300">
+        <h2 class="text-2xl font-bold text-violet-900 mb-8 pb-2 border-b border-violet-200">Nos coordonnées</h2>
+        
+        <!-- Informations -->
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
+              <i class="fas fa-map-marker-alt text-violet-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-semibold text-violet-800">Adresse</h3>
+              <p class="text-violet-600 mt-1">2<sup>ieme</sup> Carrefour Eveche, Bafoussam</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+              <i class="fas fa-phone-alt text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-semibold text-violet-800">Téléphone</h3>
+              <p class="text-violet-600 mt-1">
+                <a href="tel:+237698305149" class="hover:text-blue-600 transition-colors">698 30 51 49</a><br>
+                <a href="tel:+237672209021" class="hover:text-blue-600 transition-colors">672 20 90 21</a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
+              <i class="fas fa-envelope text-violet-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-semibold text-violet-800">Email</h3>
+              <p class="text-violet-600 mt-1">
+                <a href="mailto:cabrellekamgaing@gmail.com" class="hover:text-blue-600 transition-colors">cabrellekamgaing@gmail.com</a>
+              </p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+              <i class="fas fa-clock text-blue-600 text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-semibold text-violet-800">Horaires d'ouverture</h3>
+              <p class="text-violet-600 mt-1">
+                Lundi - Vendredi: 9h - 19h<br>
+                Samedi: 8h - 20h<br>
+                Dimanche: 9h - 15h
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Carte -->
+        <div class="mt-10 rounded-xl overflow-hidden border border-violet-200">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.0556712326485!2d10.414689974979245!3d5.476251235471093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105f3a7f5e6a8e3b%3A0x6e3a3d0c2c8f0b1d!2sBafoussam%2C%20Cameroun!5e0!3m2!1sfr!2sfr!4v1650000000000!5m2!1sfr!2sfr" 
+            width="100%" 
+            height="250" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            class="rounded-lg"
+          ></iframe>
+        </div>
+      </div>
+      
+      <!-- Formulaire de contact -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 border border-violet-100 transform hover:-translate-y-1 transition-all duration-300">
+        <h2 class="text-2xl font-bold text-violet-900 mb-8 pb-2 border-b border-violet-200">Envoyez-nous un message</h2>
+        
+        <form class="space-y-6">
+          <div>
+            <label for="name" class="block text-lg font-medium text-violet-800 mb-2">Votre nom</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-user text-violet-500"></i>
+              </div>
+              <input 
+                type="text" 
+                id="name" 
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-violet-200 focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all"
+                placeholder="Votre nom complet"
+              >
+            </div>
+          </div>
+          
+          <div>
+            <label for="email" class="block text-lg font-medium text-violet-800 mb-2">Votre email</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-envelope text-violet-500"></i>
+              </div>
+              <input 
+                type="email" 
+                id="email" 
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-violet-200 focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all"
+                placeholder="votre@email.com"
+              >
+            </div>
+          </div>
+          
+          <div>
+            <label for="subject" class="block text-lg font-medium text-violet-800 mb-2">Sujet</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-tag text-violet-500"></i>
+              </div>
+              <select 
+                id="subject" 
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-violet-200 focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all appearance-none"
+              >
+                <option value="" disabled selected>Choisissez un sujet</option>
+                <option value="commande">Commande spéciale</option>
+                <option value="question">Question sur nos produits</option>
+                <option value="livraison">Demande de livraison</option>
+                <option value="evenement">Organisation d'événement</option>
+                <option value="autre">Autre demande</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                <i class="fas fa-chevron-down text-violet-500"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="message" class="block text-lg font-medium text-violet-800 mb-2">Votre message</label>
+            <div class="relative">
+              <div class="absolute top-3 left-3">
+                <i class="fas fa-comment text-violet-500"></i>
+              </div>
+              <textarea 
+                id="message" 
+                rows="6" 
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-violet-200 focus:ring-2 focus:ring-violet-500 focus:border-violet-500 transition-all"
+                placeholder="Dites-nous comment nous pouvons vous aider..."
+              ></textarea>
+            </div>
+          </div>
+          
+          <div class="flex justify-center">
+            <button 
+              type="submit" 
+              class="bg-blue-500 from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              <i class="fas fa-paper-plane mr-2"></i>Envoyer le message
+            </button>
+          </div>
+        </form>
+        
+        <!-- Réseaux sociaux -->
+        <div class="mt-10 pt-6 border-t border-violet-200">
+          <h3 class="text-xl font-bold text-violet-900 mb-4 text-center">Suivez-nous</h3>
+          <div class="flex justify-center space-x-4">
+            <a href="#" class="w-12 h-12 rounded-full bg-violet-600 hover:bg-blue-600 flex items-center justify-center transition-all transform hover:-translate-y-1">
+              <i class="fab fa-facebook-f text-white text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-violet-600 hover:bg-blue-600 flex items-center justify-center transition-all transform hover:-translate-y-1">
+              <i class="fab fa-instagram text-white text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-violet-600 hover:bg-blue-600 flex items-center justify-center transition-all transform hover:-translate-y-1">
+              <i class="fab fa-whatsapp text-white text-lg"></i>
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full bg-violet-600 hover:bg-blue-600 flex items-center justify-center transition-all transform hover:-translate-y-1">
+              <i class="fab fa-pinterest-p text-white text-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ -->
+    <div class="mt-20 max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center text-blue-600 mb-12">Questions fréquemment posées</h2>
+      
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-violet-100">
+          <button class="flex justify-between items-center w-full p-5 text-left font-medium text-violet-800 hover:text-violet-600 transition-colors">
+            <span>Comment puis-je passer commande?</span>
+            <i class="fas fa-chevron-down text-violet-500"></i>
+          </button>
+          <div class="px-5 pb-5 text-violet-700">
+            <p>Vous pouvez passer commande par téléphone, via notre formulaire de contact ou en nous rendant visite dans notre boutique. Pour les commandes spéciales, nous recommandons de nous contacter au moins 48h à l'avance.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-violet-100">
+          <button class="flex justify-between items-center w-full p-5 text-left font-medium text-violet-800 hover:text-violet-600 transition-colors">
+            <span>Proposez-vous des options sans gluten ou végétaliennes?</span>
+            <i class="fas fa-chevron-down text-violet-500"></i>
+          </button>
+          <div class="px-5 pb-5 text-violet-700">
+            <p>Oui, nous proposons une variété d'options pour répondre à différents régimes alimentaires. Veuillez nous informer de vos besoins spécifiques lors de votre commande.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-violet-100">
+          <button class="flex justify-between items-center w-full p-5 text-left font-medium text-violet-800 hover:text-violet-600 transition-colors">
+            <span>Livrez-vous à domicile?</span>
+            <i class="fas fa-chevron-down text-violet-500"></i>
+          </button>
+          <div class="px-5 pb-5 text-violet-700">
+            <p>Nous proposons un service de livraison dans un rayon de 20km autour de Bafoussam. Des frais de livraison peuvent s'appliquer en fonction de la distance et de la taille de la commande.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-violet-100">
+          <button class="flex justify-between items-center w-full p-5 text-left font-medium text-violet-800 hover:text-violet-600 transition-colors">
+            <span>Puis-je personnaliser un gâteau?</span>
+            <i class="fas fa-chevron-down text-violet-500"></i>
+          </button>
+          <div class="px-5 pb-5 text-violet-700">
+            <p>Absolument! Nous adorons créer des gâteaux personnalisés pour des occasions spéciales. Contactez-nous avec vos idées et nous créerons une pâtisserie unique pour vous.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

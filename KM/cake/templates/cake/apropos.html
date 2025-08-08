@@ -1,0 +1,256 @@
+{% extends 'test.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Section Hero avec carrousel -->
+<div class="relative h-screen overflow-hidden">
+  <!-- Carrousel d'images -->
+  <div id="carousel" class="absolute inset-0 transition-opacity duration-1000 ease-in-out">
+    <div class="absolute inset-0">
+      <img src="{% static 'vente/f1.jpg' %}" alt="Pâtisserie fine" class="w-full h-full object-cover transition-all duration-1000">
+    </div>
+    <div class="absolute inset-0 opacity-0">
+      <img src="{% static 'vente/f2.jpg' %}" alt="Desserts gourmands" class="w-full h-full object-cover transition-all duration-1000">
+    </div>
+    <div class="absolute inset-0 opacity-0">
+      <img src="{% static 'vente/f3.jpg' %}" alt="Gâteaux artisanaux" class="w-full h-full object-cover transition-all duration-1000">
+    </div>
+  </div>
+  
+  <!-- Overlay coloré -->
+  <div class="absolute inset-0 bg-gradient-to-r from-violet-900/70 to-blue-900/50"></div>
+  
+  <!-- Texte de bienvenue -->
+  <div class="relative h-full flex flex-col justify-center items-center text-center px-4 z-10">
+    <h4 class="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+      <span class="text-yellow-300">Bienvenue</span> chez Jodelle Pâtisserie
+    </h4>
+    <p class="text-xl md:text-2xl text-white max-w-3xl mb-8 animate-fade-in delay-300">
+      L'art de la pâtisserie fine réinventé avec passion
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 animate-fade-in delay-500">
+      <a href="{% url 'nos_gateaux' %}" class="bg-gradient-to-r from-violet-600 to-blue-600 text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:from-violet-700 hover:to-blue-700 transition-all transform hover:-translate-y-1">
+        Découvrir nos créations
+      </a>
+      <a href="{% url 'contact' %}" class="bg-white text-violet-700 px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:bg-violet-100 transition-all transform hover:-translate-y-1">
+        Commander
+      </a>
+    </div>
+  </div>
+  
+  <!-- Flèches de navigation -->
+  <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 text-white rounded-full p-3 hover:bg-white/30 transition-all">
+    <i class="fas fa-chevron-left text-xl"></i>
+  </button>
+  <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 text-white rounded-full p-3 hover:bg-white/30 transition-all">
+    <i class="fas fa-chevron-right text-xl"></i>
+  </button>
+  
+  <!-- Indicateurs de diapositives -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+    <button class="slide-indicator w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+    <button class="slide-indicator w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+    <button class="slide-indicator w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition-opacity"></button>
+  </div>
+</div>
+
+<!-- Section À propos -->
+<div class="py-20 bg-gradient-to-b from-violet-50 to-blue-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <!-- Image -->
+      <div class="md:w-1/2 relative">
+        <div class="rounded-2xl overflow-hidden shadow-2xl transform rotate-3">
+          <img src="{% static 'vente/f5.jpg' %}" alt="Notre équipe" class="w-full h-auto">
+        </div>
+        <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-violet-600 to-blue-600 text-white py-4 px-8 rounded-lg shadow-xl transform rotate-3">
+          <p class="text-4xl font-bold">2024</p>
+          <p class="text-sm">Année de création</p>
+        </div>
+      </div>
+      
+      <!-- Texte -->
+      <div class="md:w-1/2">
+        <h2 class="text-3xl md:text-4xl font-bold text-violet-900 mb-6">
+          Notre passion pour la <span class="text-blue-600">pâtisserie d'exception</span>
+        </h2>
+        
+        <div class="space-y-4 text-violet-700 text-lg">
+          <p>
+            Fondée en 2024 par Jodelle Kamgaing, Jodelle Pâtisserie est bien plus qu'une simple pâtisserie. 
+            C'est un lieu où l'artisanat rencontre la créativité pour donner naissance à des desserts 
+            exceptionnels qui éveillent les sens et créent des souvenirs inoubliables.
+          </p>
+          
+          <p>
+            Notre équipe de pâtissiers passionnés sélectionne avec soin les meilleurs ingrédients locaux 
+            et internationaux pour créer des gâteaux, pâtisseries et viennoiseries d'une qualité incomparable.
+          </p>
+          
+          <p>
+            Chaque création est une œuvre d'art comestible, conçue avec amour et dévouement pour 
+            ravir vos papilles et émerveiller vos yeux.
+          </p>
+        </div>
+        
+        <div class="mt-8 grid grid-cols-2 gap-4">
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center mr-3">
+              <i class="fas fa-heart text-violet-600 text-xl"></i>
+            </div>
+            <p class="text-violet-800 font-medium">Passion authentique</p>
+          </div>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+              <i class="fas fa-leaf text-blue-600 text-xl"></i>
+            </div>
+            <p class="text-violet-800 font-medium">Ingrédients naturels</p>
+          </div>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center mr-3">
+              <i class="fas fa-star text-violet-600 text-xl"></i>
+            </div>
+            <p class="text-violet-800 font-medium">Qualité exceptionnelle</p>
+          </div>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+              <i class="fas fa-hands-helping text-blue-600 text-xl"></i>
+            </div>
+            <p class="text-violet-800 font-medium">Service personnalisé</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Section À propos -->
+        <div class="py-20 bg-gradient-to-b from-blue-50 to-blue-100">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <!-- Image -->
+                    <div class="md:w-1/2 relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl transform rotate-3">
+                            <img src="{% static 'vente/f4.jpg' %}" alt="Notre équipe" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white py-4 px-8 rounded-lg shadow-xl transform rotate-3">
+                            <p class="text-4xl font-bold">2024</p>
+                            <p class="text-sm">Année de création</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Texte -->
+                    <div class="md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
+                            L'excellence dans chaque <span class="text-blue-600">douceur</span>
+                        </h2>
+                        
+                        <div class="space-y-4 text-blue-700 text-lg">
+                            <p>
+                                Depuis son lancement en 2024, Jodelle Pâtisserie, fondée par Jodelle Kamgaing, 
+                                célèbre l'art de la pâtisserie fine. Nous transformons chaque dessert en une 
+                                expérience unique, mêlant savoir-faire traditionnel et touches d'innovation.
+                            </p>
+                            
+                            <p>
+                                Nos pâtissiers talentueux utilisent des ingrédients de première qualité, 
+                                soigneusement sélectionnés pour leur fraîcheur et leur authenticité, 
+                                afin de créer des douceurs qui émerveillent aussi bien le palais que les yeux.
+                            </p>
+                            
+                            <p>
+                                Chez Jodelle Pâtisserie, chaque gâteau raconte une histoire, celle d'une passion 
+                                dédiée à offrir des moments de bonheur à travers des créations sucrées uniques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<style>
+  /* Animation fade-in */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  /* Ajustements pour le carrousel */
+  #carousel > div {
+    transition: opacity 1s ease-in-out;
+  }
+</style>
+
+<!-- Script pour le carrousel -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('#carousel > div');
+    const indicators = document.querySelectorAll('.slide-indicator');
+    let currentSlide = 0;
+    
+    // Initialisation
+    slides[0].classList.remove('opacity-0');
+    indicators[0].classList.remove('opacity-50');
+    indicators[0].classList.add('opacity-100');
+    
+    // Fonction pour changer de diapositive
+    function showSlide(index) {
+      // Réinitialiser toutes les diapositives
+      slides.forEach(slide => {
+        slide.classList.add('opacity-0');
+      });
+      indicators.forEach(indicator => {
+        indicator.classList.add('opacity-50');
+        indicator.classList.remove('opacity-100');
+      });
+      
+      // Afficher la diapositive actuelle
+      slides[index].classList.remove('opacity-0');
+      indicators[index].classList.remove('opacity-50');
+      indicators[index].classList.add('opacity-100');
+      
+      currentSlide = index;
+    }
+    
+    // Boutons suivants/précédents
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      const nextSlide = (currentSlide + 1) % slides.length;
+      showSlide(nextSlide);
+    });
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      const prevSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevSlide);
+    });
+    
+    // Indicateurs cliquables
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        showSlide(index);
+      });
+    });
+    
+    // Changement automatique toutes les 5 secondes
+    setInterval(() => {
+      const nextSlide = (currentSlide + 1) % slides.length;
+      showSlide(nextSlide);
+    }, 5000);
+  });
+</script>
+
+{% endblock %}

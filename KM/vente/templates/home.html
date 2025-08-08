@@ -33,7 +33,7 @@
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-10px);
             }
             to {
                 opacity: 1;
@@ -49,11 +49,13 @@
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
         }
         
         #menu-toggle:checked ~ .mobile-menu {
-            max-height: 500px;
+            max-height: 600px;
+            opacity: 1;
             animation: slideIn 0.4s ease-out;
         }
         
@@ -93,6 +95,84 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        /* Responsive navbar styles */
+        .nav-link {
+            font-size: clamp(0.8rem, 2vw, 0.9rem); /* Scales font size */
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem); /* Scales padding */
+        }
+
+        /* Desktop menu adjustments */
+        @media (min-width: 768px) {
+            .nav-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .desktop-menu {
+                display: flex;
+                align-items: center;
+                gap: clamp(0.5rem, 1vw, 1rem); /* Scales gap between links */
+            }
+        }
+
+        /* Improved mobile navbar styles */
+        @media (max-width: 767px) {
+            .desktop-menu {
+                display: none; /* Hide desktop menu on mobile */
+            }
+            .mobile-menu {
+                background: #ffffff;
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 100%;
+                z-index: 40;
+            }
+            
+            .mobile-menu a {
+                display: block;
+                padding: 12px 24px;
+                font-size: clamp(0.9rem, 3vw, 1.1rem); /* Scales font size */
+                color: #1e3a8a;
+                transition: background-color 0.3s ease;
+            }
+            
+            .mobile-menu a:hover {
+                background-color: #eff6ff;
+            }
+            
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 24px;
+                height: 18px;
+                cursor: pointer;
+            }
+            
+            .hamburger span {
+                display: block;
+                height: 3px;
+                background: white;
+                border-radius: 2px;
+                transition: all 0.3s ease;
+            }
+            
+            #menu-toggle:checked ~ .hamburger span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            #menu-toggle:checked ~ .hamburger span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            #menu-toggle:checked ~ .hamburger span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
     </style>
     <script>
         tailwind.config = {
@@ -109,10 +189,10 @@
     </script>
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-b from-sky-50 to-white">
-    <!-- Navbar fixe en haut -->
-    <header class="bg-sky-600 shadow-md sticky top-0 z-50">
+    <!-- Navbar statique -->
+    <header class="bg-sky-600 shadow-md">
         <nav class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
+            <div class="nav-container flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="#" class="text-xl font-bold text-gray-100 animate-fadeInDown flex items-center">
@@ -122,21 +202,23 @@
                 </div>
                 
                 <!-- Menu pour mobile -->
-                <div class="md:hidden">
-                    <label for="menu-toggle" class="cursor-pointer text-gray-100">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </label>
+                <div class="md:hidden flex items-center">
                     <input class="hidden" type="checkbox" id="menu-toggle" />
+                    <label for="menu-toggle" class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
                 </div>
                 
                 <!-- Menu principal -->
-                <div class="hidden md:flex space-x-1">
-                    <a href="{% url 'welcome' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">Welcome</a>
-                    <a href="{% url 'about' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">About</a>
-                    <a href="{% url 'offers' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">Services</a>
-                    <a href="{% url 'project' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">Project</a>
-                    <a href="{% url 'test' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">Blog</a>
-                    <a href="{% url 'join' %}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300 nav-link">Contact</a>
+                <div class="desktop-menu hidden md:flex space-x-1">
+                    <a href="{% url 'welcome' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Welcome</a>
+                    <a href="{% url 'about' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">About</a>
+                    <a href="{% url 'offers' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Services</a>
+                    <a href="{% url 'project' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Project</a>
+                    <a href="{% url 'test' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Blog</a>
+                    <a href="{% url 'join' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Contact</a>
                 </div>
                 
                 <!-- Boutons de connexion -->
@@ -148,18 +230,18 @@
             </div>
             
             <!-- Menu mobile -->
-            <div class="mobile-menu md:hidden mt-2 pb-4">
-                <a href="{% url 'welcome' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">Welcome</a>
-                <a href="{% url 'about' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">About</a>
-                <a href="{% url 'offers' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">Services</a>
-                <a href="{% url 'project' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">Project</a>
-                <a href="{% url 'test' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">Blog</a>
-                <a href="{% url 'join' %}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100">Contact</a>
+            <div class="mobile-menu md:hidden">
+                <a href="{% url 'welcome' %}" class="block">Welcome</a>
+                <a href="{% url 'about' %}" class="block">About</a>
+                <a href="{% url 'offers' %}" class="block">Services</a>
+                <a href="{% url 'project' %}" class="block">Project</a>
+                <a href="{% url 'test' %}" class="block">Blog</a>
+                <a href="{% url 'join' %}" class="block">Contact</a>
                 <div class="mt-2 pt-2 border-t border-gray-200">
-                    <a href="{% url 'connexion' %}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center">
+                    <a href="{% url 'connexion' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center">
                         <i class="fas fa-user mr-1"></i>Log in
                     </a>
-                    <a href="{% url 'inscription' %}" class="block px-3 py-2 rounded-md text-base font-medium text-blue-700 bg-white border border-blue-500 hover:bg-blue-50 text-center mt-2">
+                    <a href="{% url 'inscription' %}" class="block px-3 py-2 textcivil base font-medium text-blue-700 bg-white border border-blue-500 hover:bg-blue-50 text-center mt-2">
                         <i class="fas fa-user-plus mr-1"></i>Sign up
                     </a>
                 </div>
@@ -170,7 +252,6 @@
     <!-- Contenu principal avec animation -->
     <main class="flex-grow container mx-auto px-6 py-8">
         {% block content %}
-
         {% endblock %}
     </main>
 
@@ -185,10 +266,6 @@
                         PortFolio
                     </h3>
                     <p class="text-sm mb-4">Portfolio professionnel présentant mes compétences, projets et services dans le développement web.</p>
-                    <div class="flex items-center">
-                        <i class="fas fa-award text-yellow-300 mr-2"></i>
-                        <span class="text-sm">Développeur Full-Stack Certifié</span>
-                    </div>
                 </div>
                 
                 <!-- Liens rapides -->
@@ -199,7 +276,7 @@
                         <li><a href="{% url 'about' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>About</a></li>
                         <li><a href="{% url 'offers' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Services</a></li>
                         <li><a href="{% url 'project' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Project</a></li>
-                        <li><a href="{% url 'test' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Blog</a></li>
+                        <li><a href="{% url 'test' %}" class="hover:text-sky-200报警啊sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Blog</a></li>
                         <li><a href="{% url 'join' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
                     </ul>
                 </div>

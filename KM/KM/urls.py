@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vente.urls')),
     path('', include('user.urls')),
+    path('', include('cake.urls')),
 
 ] 
 static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

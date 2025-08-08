@@ -3,6 +3,9 @@ from .models import Gateau
 from .forms import GateauForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.views.generic import TemplateView
 
 @login_required
 def create_gateaux(request):
@@ -15,26 +18,17 @@ def create_gateaux(request):
         form = GateauForm()
     return render(request, 'dashboard.html', {'form': form, 'user': request.user})
 
-# Vue pour la page base.html
-class BaseView(TemplateView):
-    template_name = 'base.html'
-
-# ✅ Vue pour la page d'accueil (corrigée)
-class AccueilView(TemplateView):
-    template_name = 'accueil.html'
-
-# Vue pour la page À propos
 class AProposView(TemplateView):
-    template_name = 'a_propos.html'  # Créez ce template plus tard
-    
-# Vue pour la page Nos Gâteaux
+    template_name = 'cake/apropos.html'
+
 class NosGateauxView(TemplateView):
-    template_name = 'nos_gateaux.html'
+    template_name = 'cake/nos_gateaux.html'
 
-# Vue pour la page Catégorie
 class CategorieView(TemplateView):
-    template_name = 'categorie.html'
+    template_name = 'cake/categorie.html'
 
-# Vue pour la page Contact
 class ContactView(TemplateView):
-    template_name = 'contact.html'
+    template_name = 'cake/contact.html'
+
+class RetourView(TemplateView):
+    template_name = 'cake/accueil.html'

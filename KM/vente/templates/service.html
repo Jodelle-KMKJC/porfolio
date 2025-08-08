@@ -1,48 +1,273 @@
 {% extends 'home.html' %}
- {% load static %}
+{% load static %}
 
-  {% block content %}
-        <!-- Section d'accueil -->
-        <section class="py-16 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-sky-700 mb-4 animate-fadeInDown">Bienvenue sur mon Portfolio</h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8 animate-fadeIn">
-                Je suis développeur web passionné par la création d'expériences numériques innovantes et performantes.
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="{% url 'project' %}" class="px-6 py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-300 animate-fadeIn">
-                    Voir mes projets
-                </a>
-                <a href="{% url 'join' %}" class="px-6 py-3 bg-white text-sky-600 border border-sky-600 rounded-lg hover:bg-sky-50 transition duration-300 animate-fadeIn">
-                    Me contacter
-                </a>
-            </div>
-        </section>
+{% block content %}
+<!-- Section d'accueil -->
+<section class="py-16 text-center bg-gradient-to-b from-blue-50 to-blue-100">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-800 mb-4 animate-fadeInDown">Bienvenue sur mon Portfolio</h1>
+        <p class="text-xl text-blue-600 max-w-2xl mx-auto mb-8 animate-fadeIn">
+            Étudiante en première année de génie logiciel, passionnée par le développement et l'apprentissage continu.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="{% url 'project' %}" class="px-6 py-3 bg-sky-500 from-blue-600 to-blue-700 text-white rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-300 animate-fadeIn shadow-lg">
+                Voir mes projets
+            </a>
+            <a href="{% url 'join' %}" class="px-6 py-3 bg-white text-blue-600 border border-blue-600 rounded-full hover:bg-blue-50 transition-all duration-300 animate-fadeIn shadow-lg">
+                Me contacter
+            </a>
+        </div>
+    </div>
+</section>
 
-        <!-- Section de services -->
-        <section class="py-12">
-            <h2 class="text-3xl font-bold text-center text-sky-700 mb-12 animate-fadeInDown">Mes Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 animate-fadeIn">
-                    <div class="text-sky-600 text-4xl mb-4">
-                        <i class="fas fa-code"></i>
+<!-- Section de compétences -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12 animate-fadeInDown">Mes Compétences Débutantes</h2>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Langages de programmation -->
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fadeIn border border-blue-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-blue-800">Langages de Programmation</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Développement Web</h3>
-                    <p class="text-gray-600">Création de sites web modernes et réactifs avec les dernières technologies du web.</p>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-blue-700 font-medium">Python</span>
+                                <span class="text-blue-600">Débutante</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-blue-700 font-medium">HTML/CSS</span>
+                                <span class="text-blue-600">Intermédiaire</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 animate-fadeIn">
-                    <div class="text-sky-600 text-4xl mb-4">
-                        <i class="fas fa-mobile-alt"></i>
+                
+                <!-- Technologies Web -->
+                <div class="bg-blue-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 animate-fadeIn border border-blue-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-globe text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-blue-800">Technologies Web</h3>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Applications Mobile</h3>
-                    <p class="text-gray-600">Développement d'applications mobiles performantes pour iOS et Android.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 animate-fadeIn">
-                    <div class="text-sky-600 text-4xl mb-4">
-                        <i class="fas fa-paint-brush"></i>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-blue-700 font-medium">JavaScript</span>
+                                <span class="text-blue-600">Débutante</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-blue-700 font-medium">Git/GitHub</span>
+                                <span class="text-blue-600">Débutante</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 55%"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Design UI/UX</h3>
-                    <p class="text-gray-600">Conception d'interfaces utilisateur intuitives et d'expériences utilisateur mémorables.</p>
                 </div>
             </div>
-        </section>
-        {% endblock %}
+            
+            <!-- Compétences transversales -->
+            <div class="mt-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+                <h3 class="text-xl font-bold mb-4">Compétences Transversales</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <p class="text-sm">Résolution de problèmes</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <p class="text-sm">Travail d'équipe</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <p class="text-sm">Communication</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <p class="text-sm">Apprentissage continu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section parcours académique -->
+<section class="py-12 bg-blue-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Mon Parcours</h2>
+        
+        <div class="max-w-3xl mx-auto">
+            <!-- Formation actuelle -->
+            <div class="flex mb-8">
+                <div class="flex flex-col items-center mr-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white"></i>
+                    </div>
+                    <div class="w-1 h-full bg-gradient-to-b from-blue-400 to-blue-300"></div>
+                </div>
+                <div class="pb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Première Année Génie Logiciel</h3>
+                    <p class="text-blue-600 font-medium mb-2">2025 - Présent</p>
+                    <p class="text-blue-700">
+                        Actuellement en formation de base en programmation, algorithmique et conception logicielle.
+                        Acquisition des fondamentaux qui me permettront de développer des applications de qualité.
+                    </p>
+                    <div class="mt-3 flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Programmation Orientée Objet</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Algorithmique</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Bases de données</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projets personnels -->
+            <div class="flex mb-8">
+                <div class="flex flex-col items-center mr-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-laptop-code text-white"></i>
+                    </div>
+                    <div class="w-1 h-full bg-gradient-to-b from-blue-400 to-blue-300"></div>
+                </div>
+                <div class="pb-8">
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Projets Personnels</h3>
+                    <p class="text-blue-600 font-medium mb-2">En continu</p>
+                    <p class="text-blue-700">
+                        Développement de petits projets pour mettre en pratique mes connaissances et explorer
+                        de nouvelles technologies. Ces projets me permettent de progresser et d'expérimenter.
+                    </p>
+                    <div class="mt-3">
+                        <a href="{% url 'project' %}" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                            Voir mes projets
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Objectifs futurs -->
+            <div class="flex">
+                <div class="flex flex-col items-center mr-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-bullseye text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-800 mb-2">Mes Objectifs</h3>
+                    <p class="text-blue-600 font-medium mb-2">À court et moyen terme</p>
+                    <ul class="text-blue-700 space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Maîtriser les concepts fondamentaux de la programmation
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Développer des applications web complètes
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Contribuer à des projets open source
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                            Obtenir une certification dans un langage clé
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section inspiration -->
+<section class="py-12 bg-gradient-to-r from-blue-600 to-blue-700 text-sky-800">
+    <div class="container mx-auto px-4 text-center">
+        <i class="fas fa-quote-left text-4xl opacity-30 mb-6"></i>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 italic">
+            "Chaque expert était autrefois un débutant. Chaque professionnel était autrefois un amateur. 
+            Nous avons tous commencé quelque part."
+        </p>
+        <p class="font-bold">- Robin Sharma</p>
+    </div>
+</section>
+
+<!-- Styles supplémentaires -->
+<style>
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .animate-fadeInDown {
+        animation: fadeInDown 0.8s ease-out forwards;
+    }
+    
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-out forwards;
+    }
+    
+    /* Retard d'animation pour les éléments */
+    .animate-fadeIn:nth-child(1) { animation-delay: 0.1s; }
+    .animate-fadeIn:nth-child(2) { animation-delay: 0.3s; }
+    .animate-fadeIn:nth-child(3) { animation-delay: 0.5s; }
+    
+    /* Effet de survol pour les cartes */
+    .bg-blue-50:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}

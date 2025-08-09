@@ -23,3 +23,6 @@ class Profil(models.Model):
 
     def __str__(self):
         return f"Profil de {self.user.username}"
+
+
+

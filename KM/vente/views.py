@@ -26,5 +26,5 @@ class JoinView(TemplateView):
     template_name = 'contact.html'
 
 class TestView(TemplateView):
-    template_name = 'test.html'
+    template_name = 'apropos.html'
 

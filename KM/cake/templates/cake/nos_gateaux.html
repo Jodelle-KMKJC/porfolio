@@ -1,2 +1,111 @@
 {% extends 'test.html' %}
 {% load static %}
+{% block content %}
+<div class="gateaux-container bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen py-8">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- En-tête -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-blue-600 bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                Bienvenue chez Jodelle Patisserie
+            </h1>
+            <p class="text-violet-900 max-w-3xl mx-auto">
+                Découvrez nos délicieuses créations pâtissières, toutes préparées avec des ingrédients de qualité et un savoir-faire artisanal exceptionnel.
+            </p>
+        </div>
+
+        <!-- Messages d'alerte -->
+        {% if messages %}
+            <div class="mb-8 max-w-3xl mx-auto">
+                {% for message in messages %}
+                    <div class="bg-{{ message.tags }}-100 border border-{{ message.tags }}-400 text-{{ message.tags }}-700 px-4 py-3 rounded-lg relative" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Liste des gâteaux -->
+        {% if gateaux %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for gateau in gateaux %}
+                    {% if not gateau.is_deleted %}
+                        <!-- Carte de gâteau -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex flex-col border-2 border-blue-100">
+                            <!-- Image du gâteau - MODIFICATION PRINCIPALE ICI -->
+                            <div class="w-full h-64 overflow-hidden">
+                                {% if gateau.image %}
+                                    <img src="{{ gateau.image.url }}" alt="{{ gateau.nom }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                                {% else %}
+                                    <div class="bg-gradient-to-r from-blue-200 to-purple-200 w-full h-full flex items-center justify-center">
+                                        <span class="text-gray-600 font-medium">Image non disponible</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- Détails du gâteau -->
+                            <div class="p-5 flex-grow">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h2 class="text-xl font-bold text-gray-800">{{ gateau.nom }}</h2>
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                                        {{ gateau.get_categorie_display }}
+                                    </span>
+                                </div>
+                                
+                                <p class="text-gray-600 text-sm mb-3">{{ gateau.description|truncatechars:100 }}</p>
+                                
+                                <div class="mt-4 space-y-2">
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="font-bold text-gray-700">{{ gateau.prix }} €</span>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-purple-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm {% if gateau.disponibilite %}text-yellow-300 font-medium{% else %}text-red-600{% endif %}">
+                                            {% if gateau.disponibilite %}Disponible{% else %}Non disponible{% endif %}
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="flex items-start mt-2">
+                                        <svg class="w-4 h-4 text-purple-600 mr-2 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2z"/>
+                                        </svg>
+                                        <p class="text-sm text-gray-600 italic">
+                                            {% if gateau.avis %}{{ gateau.avis|truncatechars:200 }}{% else %}Aucun avis pour le moment{% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bouton Commander -->
+                            <div class="px-5 pb-5 mt-auto">
+                                <a href="{% url 'inscription' %}" class="block w-full bg-violet-900 from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white text-center font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg">
+                                    Commander
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <!-- Aucun gâteau disponible -->
+            <div class="text-center py-16">
+                <div class="inline-block p-4 bg-blue-50 rounded-full mb-4">
+                    <svg class="w-16 h-16 mx-auto text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-700 mb-2">Aucun gâteau disponible pour le moment</h3>
+                <p class="text-gray-600 max-w-md mx-auto">
+                    Nous préparons de nouvelles délicieuses créations. Revenez bientôt pour découvrir nos dernières pâtisseries!
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

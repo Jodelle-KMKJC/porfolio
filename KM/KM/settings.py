@@ -173,5 +173,14 @@ STORAGES = {
     },
 }
 
+# Paramètres d'email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Pour Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'cabrellekamgaing@gmail.com'  # Votre adresse Gmail
+EMAIL_HOST_PASSWORD = '1'  # Votre mot de passe ou mot de passe d'application
+DEFAULT_FROM_EMAIL = 'cabrellekamgaing@gmail.com'  # Doit correspondre à EMAIL_HOST_USER
+
 
 

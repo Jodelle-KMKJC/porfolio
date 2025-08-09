@@ -1,6 +1,9 @@
 from django.urls import path
 from .views import AProposView, NosGateauxView, CategorieView, ContactView, RetourView
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
 
     path('part/', AProposView.as_view(), name='apropos'),
@@ -11,3 +14,4 @@ urlpatterns = [
     path('retour/', RetourView.as_view(), name='retour'),
 
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

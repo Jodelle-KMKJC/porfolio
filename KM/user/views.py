@@ -75,3 +75,5 @@ class VendeurDashboardView(TemplateView):
 @method_decorator(user_passes_test(is_client, login_url='start'), name='dispatch')
 class ClientHomeView(TemplateView):
     template_name = 'client_home.html'
+
+    

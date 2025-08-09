@@ -16,7 +16,17 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f0f9ff;
         }
-        
+
+        header {
+            position: fixed; /* Fixe la navbar en haut */
+            width: 100%; /* Prend toute la largeur */
+            z-index: 50; /* Assure que la navbar est au-dessus du contenu */
+        }
+
+        main {
+            padding-top: 80px; /* Espace pour la navbar fixe */
+        }
+
         /* Animation pour la navbar */
         @keyframes fadeInDown {
             from {
@@ -28,7 +38,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         /* Animation pour le menu mobile */
         @keyframes slideIn {
             from {
@@ -40,11 +50,11 @@
                 transform: translateY(0);
             }
         }
-        
+
         .animate-fadeInDown {
             animation: fadeInDown 0.5s ease-out;
         }
-        
+
         /* Menu mobile */
         .mobile-menu {
             max-height: 0;
@@ -52,18 +62,18 @@
             transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
             opacity: 0;
         }
-        
+
         #menu-toggle:checked ~ .mobile-menu {
             max-height: 600px;
             opacity: 1;
             animation: slideIn 0.4s ease-out;
         }
-        
+
         /* Effets de survol */
         .nav-link {
             position: relative;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -74,32 +84,23 @@
             background: white;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
+
         .social-icon {
             transition: transform 0.3s ease;
         }
-        
+
         .social-icon:hover {
             transform: translateY(-3px);
-        }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         /* Responsive navbar styles */
         .nav-link {
-            font-size: clamp(0.8rem, 2vw, 0.9rem); /* Scales font size */
-            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1rem); /* Scales padding */
+            font-size: clamp(0.8rem, 2vw, 1rem); /* Scales font size */
+            padding: clamp(0.5rem, 1.5vw, 0.75rem); /* Scales padding */
         }
 
         /* Desktop menu adjustments */
@@ -213,14 +214,14 @@
                 
                 <!-- Menu principal -->
                 <div class="desktop-menu hidden md:flex space-x-1">
-                    <a href="{% url 'welcome' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Welcome</a>
-                    <a href="{% url 'about' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">About</a>
-                    <a href="{% url 'offers' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Services</a>
-                    <a href="{% url 'project' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Project</a>
-                    <a href="{% url 'test' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Blog</a>
-                    <a href="{% url 'join' %}" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-100 hover:bg-sky-500 transition duration-300">Contact</a>
+                    <a href="{% url 'welcome' %}" class="nav-link">Welcome</a>
+                    <a href="{% url 'about' %}" class="nav-link">About</a>
+                    <a href="{% url 'offers' %}" class="nav-link">Services</a>
+                    <a href="{% url 'project' %}" class="nav-link">Project</a>
+                    <a href="{% url 'apropos' %}" class="nav-link">Blog</a>
+                    <a href="{% url 'join' %}" class="nav-link">Contact</a>
                 </div>
-                
+
                 <!-- Boutons de connexion -->
                 <div class="hidden md:flex items-center space-x-2">
                     <a href="{% url 'acess' %}" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-700 hover:bg-blue-600 transition duration-300 shadow-md">
@@ -241,7 +242,7 @@
                     <a href="{% url 'connexion' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center">
                         <i class="fas fa-user mr-1"></i>Log in
                     </a>
-                    <a href="{% url 'inscription' %}" class="block px-3 py-2 textcivil base font-medium text-blue-700 bg-white border border-blue-500 hover:bg-blue-50 text-center mt-2">
+                    <a href="{% url 'inscription' %}" class="block px-3 py-2 text-base font-medium text-blue-700 bg-white border border-blue-500 hover:bg-blue-50 text-center mt-2">
                         <i class="fas fa-user-plus mr-1"></i>Sign up
                     </a>
                 </div>
@@ -276,7 +277,7 @@
                         <li><a href="{% url 'about' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>About</a></li>
                         <li><a href="{% url 'offers' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Services</a></li>
                         <li><a href="{% url 'project' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Project</a></li>
-                        <li><a href="{% url 'test' %}" class="hover:text-sky-200报警啊sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Blog</a></li>
+                        <li><a href="{% url 'test' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Blog</a></li>
                         <li><a href="{% url 'join' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
                     </ul>
                 </div>

@@ -4,7 +4,7 @@ from .models import Gateau
 class GateauForm(forms.ModelForm):
     class Meta:
         model = Gateau
-        fields = ['nom', 'description', 'prix', 'image', 'categorie', 'disponibilite', 'avis',]
+        fields = ['nom', 'description', 'prix', 'image', 'categorie', 'disponibilite', 'avis', 'is_deleted']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4, 'class': 'w-full p-2 border rounded'}),
             'avis': forms.Textarea(attrs={'rows': 4, 'class': 'w-full p-2 border rounded'}),
@@ -18,3 +18,5 @@ class GateauForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+
+        

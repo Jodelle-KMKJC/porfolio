@@ -5,29 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio | Développeur Full-Stack</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
     <style>
-        /* Polices et animations */
+        /* Importing fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f9ff;
         }
 
         header {
-            position: fixed; /* Fixe la navbar en haut */
-            width: 100%; /* Prend toute la largeur */
-            z-index: 50; /* Assure que la navbar est au-dessus du contenu */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
         }
 
         main {
-            padding-top: 80px; /* Espace pour la navbar fixe */
+            padding-top: 80px;
         }
 
-        /* Animation pour la navbar */
+        /* Animations */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -39,7 +39,6 @@
             }
         }
 
-        /* Animation pour le menu mobile */
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -55,7 +54,7 @@
             animation: fadeInDown 0.5s ease-out;
         }
 
-        /* Menu mobile */
+        /* Mobile menu styles */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -69,7 +68,7 @@
             animation: slideIn 0.4s ease-out;
         }
 
-        /* Effets de survol */
+        /* Hover effects */
         .nav-link {
             position: relative;
         }
@@ -97,13 +96,12 @@
             transform: translateY(-3px);
         }
 
-        /* Responsive navbar styles */
+        /* Responsive styles */
         .nav-link {
-            font-size: clamp(0.8rem, 2vw, 1rem); /* Scales font size */
-            padding: clamp(0.5rem, 1.5vw, 0.75rem); /* Scales padding */
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem);
         }
 
-        /* Desktop menu adjustments */
         @media (min-width: 768px) {
             .nav-container {
                 display: flex;
@@ -113,14 +111,13 @@
             .desktop-menu {
                 display: flex;
                 align-items: center;
-                gap: clamp(0.5rem, 1vw, 1rem); /* Scales gap between links */
+                gap: clamp(0.5rem, 1vw, 1rem);
             }
         }
 
-        /* Improved mobile navbar styles */
         @media (max-width: 767px) {
             .desktop-menu {
-                display: none; /* Hide desktop menu on mobile */
+                display: none;
             }
             .mobile-menu {
                 background: #ffffff;
@@ -132,19 +129,19 @@
                 top: 100%;
                 z-index: 40;
             }
-            
+
             .mobile-menu a {
                 display: block;
                 padding: 12px 24px;
-                font-size: clamp(0.9rem, 3vw, 1.1rem); /* Scales font size */
+                font-size: clamp(0.9rem, 3vw, 1.1rem);
                 color: #1e3a8a;
                 transition: background-color 0.3s ease;
             }
-            
+
             .mobile-menu a:hover {
                 background-color: #eff6ff;
             }
-            
+
             .hamburger {
                 display: flex;
                 flex-direction: column;
@@ -153,7 +150,7 @@
                 height: 18px;
                 cursor: pointer;
             }
-            
+
             .hamburger span {
                 display: block;
                 height: 3px;
@@ -161,20 +158,21 @@
                 border-radius: 2px;
                 transition: all 0.3s ease;
             }
-            
+
             #menu-toggle:checked ~ .hamburger span:nth-child(1) {
                 transform: rotate(45deg) translate(5px, 5px);
             }
-            
+
             #menu-toggle:checked ~ .hamburger span:nth-child(2) {
                 opacity: 0;
             }
-            
+
             #menu-toggle:checked ~ .hamburger span:nth-child(3) {
                 transform: rotate(-45deg) translate(7px, -7px);
             }
         }
     </style>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -190,23 +188,26 @@
     </script>
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-b from-sky-50 to-white">
-    <!-- Navbar statique -->
-        <header class="bg-sky-600 shadow-md">
+    <!-- Navbar -->
+    <header class="bg-sky-600 shadow-md animate-fadeInDown">
         <nav class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
+            <div class="nav-container">
                 <!-- Logo -->
                 <a href="#" class="text-xl font-bold text-gray-100 flex items-center">
                     <i class="fas fa-code mr-2"></i>
                     PortFolio
                 </a>
 
-                <!-- Bouton hamburger -->
-                <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <!-- Hamburger button -->
+                <input type="checkbox" id="menu-toggle" class="hidden">
+                <label for="menu-toggle" class="md:hidden hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
 
-                <!-- Menu principal (desktop) -->
-                <div class="hidden md:flex items-center space-x-4">
+                <!-- Desktop menu -->
+                <div class="desktop-menu">
                     <a href="{% url 'welcome' %}" class="nav-link text-white hover:text-gray-200">Welcome</a>
                     <a href="{% url 'about' %}" class="nav-link text-white hover:text-gray-200">About</a>
                     <a href="{% url 'offers' %}" class="nav-link text-white hover:text-gray-200">Services</a>
@@ -219,30 +220,22 @@
                 </div>
             </div>
 
-            <!-- Menu mobile -->
-            <div id="mobile-menu" class="hidden md:hidden flex flex-col mt-4 space-y-2">
+            <!-- Mobile menu -->
+            <div class="mobile-menu">
                 <a href="{% url 'welcome' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Welcome</a>
                 <a href="{% url 'about' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">About</a>
                 <a href="{% url 'offers' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Services</a>
                 <a href="{% url 'project' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Project</a>
                 <a href="{% url 'apropos' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Blog</a>
                 <a href="{% url 'join' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Contact</a>
-                <a href="{% url 'connexion' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center rounded">
-                    <i class="fas fa-user mr-1"></i>Log in
-                
+                <a href="{% url 'acess' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center rounded">
+                    <i class="fas fa-user mr-1"></i>Connect
+                </a>
             </div>
         </nav>
     </header>
 
-    <!-- Script pour ouvrir/fermer le menu mobile -->
-    <script>
-        document.getElementById('menu-btn').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-    </script>
-
-
-    <!-- Contenu principal avec animation -->
+    <!-- Main content -->
     <main class="flex-grow container mx-auto px-6 py-8">
         {% block content %}
         {% endblock %}
@@ -252,7 +245,7 @@
     <footer class="bg-sky-600 text-gray-100 py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- A propos -->
+                <!-- About -->
                 <div>
                     <h3 class="text-xl font-bold mb-4 flex items-center">
                         <i class="fas fa-code mr-2"></i>
@@ -260,8 +253,8 @@
                     </h3>
                     <p class="text-sm mb-4">Portfolio professionnel présentant mes compétences, projets et services dans le développement web.</p>
                 </div>
-                
-                <!-- Liens rapides -->
+
+                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold text-lg mb-4">Liens Rapides</h4>
                     <ul class="space-y-2">
@@ -273,7 +266,7 @@
                         <li><a href="{% url 'join' %}" class="hover:text-sky-200 transition duration-300 flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i>Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- Contact -->
                 <div>
                     <h4 class="font-bold text-lg mb-4">Contactez-moi</h4>
@@ -302,8 +295,8 @@
                         </li>
                     </ul>
                 </div>
-                
-                <!-- Réseaux sociaux -->
+
+                <!-- Social Media -->
                 <div>
                     <h4 class="font-bold text-lg mb-4">Réseaux Sociaux</h4>
                     <div class="flex space-x-4 mb-6">
@@ -323,18 +316,18 @@
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
-                    
+
                     <h4 class="font-bold text-lg mt-6 mb-2">Newsletter</h4>
-                    <form class="flex">
+                    <div class="flex">
                         <input type="email" placeholder="Votre email" class="px-3 py-2 rounded-l-md border-0 focus:outline-none text-gray-800 w-full">
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">
+                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300">
                             <i class="fas fa-paper-plane"></i>
                         </button>
-                    </form>
+                    </div>
                     <p class="text-xs mt-2 text-sky-200">Inscrivez-vous pour recevoir les dernières actualités</p>
                 </div>
             </div>
-            
+
             <div class="border-t border-sky-500 mt-10 pt-6 text-center text-sm">
                 <p>&copy; 2025 Mon Portfolio. Tous droits réservés.</p>
                 <p class="mt-2">Développé avec <i class="fas fa-heart text-red-400"></i> et passion</p>

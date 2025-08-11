@@ -6,9 +6,9 @@
 <div class="relative h-screen overflow-hidden">
   <!-- Conteneur pour le fond d'images -->
   <div id="background-images" class="absolute inset-0">
-    <div class="absolute inset-0 bg-[url('{% static 'vente/f1.jpg' %}')] bg-cover bg-center transition-opacity duration-1000"></div>
-    <div class="absolute inset-0 bg-[url('{% static 'vente/f2.jpg' %}')] bg-cover bg-center opacity-0 transition-opacity duration-1000"></div>
-    <div class="absolute inset-0 bg-[url('{% static 'vente/f3.jpg' %}')] bg-cover bg-center opacity-0 transition-opacity duration-1000"></div>
+    <div class="absolute inset-0 bg-[url('{% static 'vente/f1.jpg' %}')] bg-cover bg-center transition-opacity duration-500"></div>
+    <div class="absolute inset-0 bg-[url('{% static 'vente/f2.jpg' %}')] bg-cover bg-center opacity-0 transition-opacity duration-500"></div>
+    <div class="absolute inset-0 bg-[url('{% static 'vente/f3.jpg' %}')] bg-cover bg-center opacity-0 transition-opacity duration-500"></div>
   </div>
   
   <!-- Overlay coloré -->
@@ -103,7 +103,7 @@
   </div>
 </div>
 
-<!-- Section À propos (deuxième occurrence conservée, mais vérifiez si elle est nécessaire) -->
+<!-- Section À propos (deuxième occurrence) -->
 <div class="py-20 bg-gradient-to-b from-blue-50 to-blue-100">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex flex-col md:flex-row items-center gap-12">
@@ -169,35 +169,20 @@
   
   /* Ajustements pour le fond d'images */
   #background-images > div {
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
   }
 </style>
 
-<!-- Script pour alternance automatique du fond -->
+<!-- Script optimisé pour alternance rapide du fond -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const backgrounds = document.querySelectorAll('#background-images > div');
-    let currentBackground = 0;
-    
-    // Initialisation
-    backgrounds[0].classList.remove('opacity-0');
-    
-    // Fonction pour changer le fond
-    function showBackground(index) {
-      backgrounds.forEach(bg => {
-        bg.classList.add('opacity-0');
-      });
-      
-      backgrounds[index].classList.remove('opacity-0');
-      currentBackground = index;
-    }
-    
-    // Changement automatique toutes les 5 secondes
-    setInterval(() => {
-      const nextBackground = (currentBackground + 1) % backgrounds.length;
-      showBackground(nextBackground);
-    }, 5000);
-  });
+  const bgs = document.querySelectorAll('#background-images > div');
+  let idx = 0;
+  bgs[0].classList.remove('opacity-0');
+  setInterval(() => {
+    bgs[idx].classList.add('opacity-0');
+    idx = (idx + 1) % bgs.length;
+    bgs[idx].classList.remove('opacity-0');
+  }, 3000);
 </script>
 
 {% endblock %}

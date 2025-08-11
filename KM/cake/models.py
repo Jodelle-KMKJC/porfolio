@@ -15,6 +15,8 @@ class Gateau(models.Model):
     categorie = models.CharField(max_length=20, choices=CATEGORIE_CHOICES)
     disponibilite = models.BooleanField(default=True)
     avis = models.TextField(blank=True)
+    is_deleted = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.nom

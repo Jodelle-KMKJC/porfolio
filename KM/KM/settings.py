@@ -94,16 +94,16 @@ WSGI_APPLICATION = 'KM.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # Corrected here
-        'NAME': 'vente_bd',                          # Nom de votre base de données PostgreSQL
-        'USER': 'postgres',                # Remplacez par votre nom d'utilisateur PostgreSQL
-        'PASSWORD': 'root',                         # Mot de passe de l'utilisateur PostgreSQL
-        'HOST': 'localhost',                        # Adresse IP de votre serveur PostgreSQL
-        'PORT': '5432',                                  # Laissez vide pour le port par défaut (5432)
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',  # Corrected here
+#         'NAME': 'vente_bd',                          # Nom de votre base de données PostgreSQL
+#         'USER': 'postgres',                # Remplacez par votre nom d'utilisateur PostgreSQL
+#         'PASSWORD': 'root',                         # Mot de passe de l'utilisateur PostgreSQL
+#         'HOST': 'localhost',                        # Adresse IP de votre serveur PostgreSQL
+#         'PORT': '5432',                                  # Laissez vide pour le port par défaut (5432)
+#     }
+# }
 
 DATABASES = {
     'default' : dj_database_url.parse(config('DATABASE_URL'))

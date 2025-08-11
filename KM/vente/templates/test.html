@@ -16,27 +16,20 @@
     <link rel="stylesheet" href="{% static 'css/output.css' %}" />
 
     <style>
-        /* Smooth transition for mobile menu */
         #mobile-menu {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
+            display: none;
+            transition: all 0.3s ease-out;
         }
         #mobile-menu.open {
-            max-height: 500px;
-            opacity: 1;
+            display: block;
         }
-        /* Responsive font sizes and padding */
         .nav-link {
             font-size: clamp(0.9rem, 2vw, 1rem);
             padding: clamp(0.5rem, 1.5vw, 0.75rem);
         }
-        /* Hover effects */
         .nav-link:hover {
             text-decoration: underline;
         }
-        /* Sticky footer solution */
         html, body {
             height: 100%;
         }
@@ -46,6 +39,7 @@
         }
         main {
             flex: 1 0 auto;
+            padding-top: 80px;
         }
         footer {
             flex-shrink: 0;
@@ -88,47 +82,43 @@
     </script>
 </head>
 <body class="bg-gradient-to-b from-violet-50 to-white">
-    <!-- Navbar -->
-    <header class="sticky top-0 z-50 bg-violet-50 bg-opacity-90 shadow-md">
+
+    <!-- Navbar fixe -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-blue-200 bg-opacity-90 shadow-md">
         <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Logo -->
             <a href="{% url 'accueil' %}" class="flex items-center">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 flex items-center justify-center">
-                    
-                </div>
-                <img src="{% static 'vente/logo1.jpeg' %}" alt="Jodelle Pâtisserie Logo" class="w-12 h-12 ml-2 rounded-full object-cover">
+                <img src="{% static 'vente/logo1.jpeg' %}" alt="Jodelle Pâtisserie Logo" class="w-12 h-12 rounded-full object-cover">
                 <span class="ml-3 text-lg font-bold text-violet-900">Jodelle Pâtisserie</span>
             </a>
 
-            <!-- Menu pour écrans larges -->
             <div class="hidden md:flex items-center space-x-6">
-                <a href="{% url 'accueil' %}" class="bg-blue-500 from-violet-500 to-blue-500 text-sky px-4 py-2 rounded-full font-medium hover:from-violet-600 hover:to-blue-600 transition-all nav-link">Portfolio</a>
+                <a href="{% url 'accueil' %}" class="bg-sky-500 from-violet-500 to-blue-500 text-white px-4 py-2 rounded-full font-medium hover:from-violet-600 hover:to-blue-600 transition-all nav-link">Portfolio</a>
                 <a href="{% url 'apropos' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">À Propos</a>
                 <a href="{% url 'nos_gateaux' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Nos Gâteaux</a>
                 <a href="{% url 'categorie' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Catégorie</a>
                 <a href="{% url 'contact' %}" class="text-violet-900 hover:text-blue-600 font-medium nav-link">Contact</a>
             </div>
 
-            <!-- Boutons connexion -->
             <div class="hidden md:flex items-center space-x-4">
                 <a href="{% url 'inscription' %}" class="text-blue-600 hover:text-blue-800 font-medium nav-link">Sign Up</a>
                 <a href="{% url 'connexion' %}" class="bg-violet-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors nav-link">Login</a>
             </div>
 
-            <!-- Menu mobile -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-violet-900 focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button id="mobile-menu-button" class="text-violet-900 focus:outline-none" aria-label="Toggle mobile menu" aria-expanded="false">
+                    <svg id="menu-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
         </nav>
 
-        <!-- Menu mobile déroulant -->
         <div id="mobile-menu" class="md:hidden bg-violet-50 bg-opacity-90 border-t border-violet-200 px-4 py-4">
             <div class="flex flex-col space-y-4">
-                <a href="{% url 'accueil' %}" class="bg-blue-600 from-violet-500 to-blue-500 text-blue-800 px-4 py-2 rounded-full font-medium text-center nav-link">PorFolio</a>
+                <a href="{% url 'accueil' %}" class="bg-sky-500 from-violet-500 to-blue-500 text-white px-4 py-2 rounded-full font-medium text-center nav-link">Portfolio</a>
                 <a href="{% url 'apropos' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">À Propos</a>
                 <a href="{% url 'nos_gateaux' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">Nos Gâteaux</a>
                 <a href="{% url 'categorie' %}" class="text-violet-900 hover:text-blue-600 font-medium py-2 border-b border-violet-200 nav-link">Catégorie</a>
@@ -144,14 +134,11 @@
     <!-- Main Content -->
     <main class="flex-grow">
         {% block content %}
-    
-            
-        
         {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-violet-50 bg-opacity-50 py-12">
+    <footer class="bg-blue-200 bg-opacity-50 py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <!-- Logo et nom -->
@@ -170,7 +157,7 @@
                         <li>
                             <a href="{% url 'accueil' %}" class="text-violet-700 hover:text-blue-600 flex items-center">
                                 <i class="fas fa-home text-blue-600 mr-3"></i>
-                                Accueil
+                                Portfolio
                             </a>
                         </li>
                         <li>
@@ -212,7 +199,7 @@
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-map-marker-alt text-blue-600 mr-3"></i>
-                            <span class="text-violet-700">2 <sup>ieme</sup> Carrefour Eveche, Bafoussam</span>
+                            <span class="text-violet-700">2<sup>ième</sup> Carrefour Eveche, Bafoussam</span>
                         </li>
                     </ul>
                 </div>
@@ -279,12 +266,19 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
+    <!-- JavaScript pour le menu mobile -->
     <script>
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('open');
-            mobileMenu.classList.toggle('hidden');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('open');
+            mobileMenu.classList.toggle('open', !isOpen);
+            mobileMenuButton.setAttribute('aria-expanded', !isOpen);
+            menuIcon.classList.toggle('hidden', !isOpen);
+            closeIcon.classList.toggle('hidden', isOpen);
         });
     </script>
 </body>

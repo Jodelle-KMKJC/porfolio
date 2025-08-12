@@ -189,51 +189,59 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-b from-sky-50 to-white">
     <!-- Navbar -->
-    <header class="bg-sky-600 shadow-md animate-fadeInDown">
-        <nav class="container mx-auto px-6 py-3">
-            <div class="nav-container">
-                <!-- Logo -->
-                <a href="#" class="text-xl font-bold text-gray-100 flex items-center">
-                    <i class="fas fa-code mr-2"></i>
-                    PortFolio
-                </a>
+     <header class="bg-sky-600 shadow-md">
+    <nav class="container mx-auto px-6 py-3">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-xl font-bold text-gray-100 flex items-center">
+                <i class="fas fa-code mr-2"></i>
+                PortFolio
+            </a>
 
-                <!-- Hamburger button -->
-                <input type="checkbox" id="menu-toggle" class="hidden">
-                <label for="menu-toggle" class="md:hidden hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </label>
+            <!-- Bouton hamburger -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
 
-                <!-- Desktop menu -->
-                <div class="desktop-menu">
-                    <a href="{% url 'welcome' %}" class="nav-link text-white hover:text-gray-200">Welcome</a>
-                    <a href="{% url 'about' %}" class="nav-link text-white hover:text-gray-200">About</a>
-                    <a href="{% url 'offers' %}" class="nav-link text-white hover:text-gray-200">Services</a>
-                    <a href="{% url 'project' %}" class="nav-link text-white hover:text-gray-200">Project</a>
-                    <a href="{% url 'apropos' %}" class="nav-link text-white hover:text-gray-200">Blog</a>
-                    <a href="{% url 'join' %}" class="nav-link text-white hover:text-gray-200">Contact</a>
-                    <a href="{% url 'acess' %}" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-700 hover:bg-blue-600 transition duration-300 shadow-md">
-                        <i class="fas fa-sign-in-alt mr-1"></i>Connect
-                    </a>
-                </div>
-            </div>
-
-            <!-- Mobile menu -->
-            <div class="mobile-menu">
-                <a href="{% url 'welcome' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Welcome</a>
-                <a href="{% url 'about' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">About</a>
-                <a href="{% url 'offers' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Services</a>
-                <a href="{% url 'project' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Project</a>
-                <a href="{% url 'apropos' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Blog</a>
-                <a href="{% url 'join' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Contact</a>
-                <a href="{% url 'acess' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center rounded">
-                    <i class="fas fa-user mr-1"></i>Connect
+            <!-- Menu principal (desktop) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="{% url 'welcome' %}" class="nav-link text-white hover:text-gray-200">Welcome</a>
+                <a href="{% url 'about' %}" class="nav-link text-white hover:text-gray-200">About</a>
+                <a href="{% url 'offers' %}" class="nav-link text-white hover:text-gray-200">Services</a>
+                <a href="{% url 'project' %}" class="nav-link text-white hover:text-gray-200">Project</a>
+                <a href="{% url 'apropos' %}" class="nav-link text-white hover:text-gray-200">Blog</a>
+                <a href="{% url 'join' %}" class="nav-link text-white hover:text-gray-200">Contact</a>
+                <a href="{% url 'acess' %}" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-700 hover:bg-blue-600 transition duration-300 shadow-md">
+                    <i class="fas fa-sign-in-alt mr-1"></i>Connect
                 </a>
             </div>
-        </nav>
-    </header>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col mt-4 space-y-2">
+            <a href="{% url 'welcome' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Welcome</a>
+            <a href="{% url 'about' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">About</a>
+            <a href="{% url 'offers' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Services</a>
+            <a href="{% url 'project' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Project</a>
+            <a href="{% url 'test' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Blog</a>
+            <a href="{% url 'join' %}" class="block text-white hover:bg-sky-700 px-3 py-2 rounded">Contact</a>
+            <a href="{% url 'connexion' %}" class="block px-3 py-2 text-base font-medium text-white bg-blue-500 hover:bg-blue-600 text-center rounded">
+                <i class="fas fa-user mr-1"></i>Log in
+            </a>
+            <a href="{% url 'inscription' %}" class="block px-3 py-2 text-base font-medium text-blue-700 bg-white border border-blue-500 hover:bg-blue-50 text-center rounded">
+                <i class="fas fa-user-plus mr-1"></i>Sign up
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!-- Script pour ouvrir/fermer le menu mobile -->
+<script>
+    document.getElementById('menu-btn').addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+</script>
+
 
     <!-- Main content -->
     <main class="flex-grow container mx-auto px-6 py-8">
